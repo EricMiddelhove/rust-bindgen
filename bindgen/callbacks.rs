@@ -210,7 +210,7 @@ pub struct FieldInfo<'a> {
 impl<'a> FieldInfo<'a> {
 
     /// Create a new FieldInfo instance. With no values set.
-    fn new() -> FieldInfo<'a>{
+    pub fn new() -> FieldInfo<'a>{
         FieldInfo {
             type_name: "",
             field_name: "",
@@ -218,7 +218,7 @@ impl<'a> FieldInfo<'a> {
     }
 
     /// Set the type_name value of the FieldInfo instance.
-    fn type_name(self, value: &'a str) -> FieldInfo<'a> {
+    pub fn type_name(self, value: &'a str) -> FieldInfo<'a> {
         FieldInfo {
             type_name: value,
             field_name: self.field_name,
@@ -227,11 +227,25 @@ impl<'a> FieldInfo<'a> {
     }
 
     /// Set the field_name value of the FieldInfo instance.
-    fn field_name(self, value: &'a str) -> FieldInfo<'a> {
+    pub fn field_name(self, value: &'a str) -> FieldInfo<'a> {
         FieldInfo{
             type_name: self.type_name,
             field_name: value,
         }
     }
 
+}
+
+#[cfg(test)]
+mod tests {
+
+    #[test]
+    fn test_field_info() {
+        let field_info = super::FieldInfo::new()
+            .type_name("type_name")
+            .field_name("field_name");
+
+        assert_eq!(field_info.type_name, "type_name");
+        assert_eq!(field_info.field_name, "field_name");
+    }
 }
