@@ -206,3 +206,32 @@ pub struct FieldInfo<'a> {
     /// The name of the field.
     pub field_name: &'a str,
 }
+
+impl<'a> FieldInfo<'a> {
+
+    /// Create a new FieldInfo instance. With no values set.
+    fn new() -> FieldInfo<'a>{
+        FieldInfo {
+            type_name: "",
+            field_name: "",
+        }
+    }
+
+    /// Set the type_name value of the FieldInfo instance.
+    fn type_name(self, value: &'a str) -> FieldInfo<'a> {
+        FieldInfo {
+            type_name: value,
+            field_name: self.field_name,
+        
+        }
+    }
+
+    /// Set the field_name value of the FieldInfo instance.
+    fn field_name(self, value: &'a str) -> FieldInfo<'a> {
+        FieldInfo{
+            type_name: self.type_name,
+            field_name: value,
+        }
+    }
+
+}
